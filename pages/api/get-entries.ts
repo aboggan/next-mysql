@@ -8,7 +8,7 @@ const handler: NextApiHandler = async (_, res) => {
       ORDER BY id DESC
       LIMIT 10
   `)
-
+    console.log("Ssdsds")
     return res.json(results)
   } catch (e) {
     res.status(500).json({ message: e.message })
