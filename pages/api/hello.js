@@ -7,7 +7,7 @@ const cors = Cors({
 });
 // Helper method to wait for a middleware to execute before continuing
 // And to throw an error when an error happens in a middleware
-async function runMiddleware(req, res, fn) {
+function runMiddleware(req, res, fn) {
   return new Promise((resolve, reject) => {
     fn(req, res, (result) => {
       if (result instanceof Error) {
@@ -19,7 +19,7 @@ async function runMiddleware(req, res, fn) {
   });
 }
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const menuData = {
         topLevel: [
           {
