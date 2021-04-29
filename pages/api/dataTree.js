@@ -1,4 +1,25 @@
-export default function handler(req, res) {
+import Cors from "cors";
+
+// Initializing the cors middleware
+const cors = Cors({
+  methods: ["GET", "HEAD"],
+});
+// Helper method to wait for a middleware to execute before continuing
+// And to throw an error when an error happens in a middleware
+function runMiddleware(req, res, fn) {
+  return new Promise((resolve, reject) => {
+    fn(req, res, (result) => {
+      if (result instanceof Error) {
+        return reject(result);
+      }
+
+      return resolve(result);
+    });
+  });
+}
+
+
+export default async function handler(req, res) {
   /*const graphData = {
         graph: [
             {node: 1, name: "Nodo 1"},
@@ -90,6 +111,8 @@ export default function handler(req, res) {
     ],
     schema_version: "1.0",
   };
+
+  await runMiddleware(req, res, cors)
 
   res.status(200).json(graphData);
 }
