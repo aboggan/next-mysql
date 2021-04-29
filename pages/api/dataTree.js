@@ -1,5 +1,5 @@
 export default function handler(req, res) {
-    const graphData = {
+  /*const graphData = {
         graph: [
             {node: 1, name: "Nodo 1"},
             {node: 2, name: "Nodo 2", childs: [
@@ -15,7 +15,81 @@ export default function handler(req, res) {
             ]}
         ]
 
-      };
-      
-    res.status(200).json(graphData);
-  }
+      };*/
+
+  const graphData = {
+    root_node: "nombre nodo root",
+    root_node_id: 0,
+    childs: [
+      {
+        node_name: "nodo uno",
+        node_id: 1,
+        node_depth: 1,
+        has_child: false,
+        childs: [],
+      },
+      {
+        node_name: "nodo dos",
+        node_id: 2,
+        node_depth: 1,
+        has_child: true,
+        childs: [
+          {
+            node_name: "nodo ocho",
+            node_id: 8,
+            node_depth: 2,
+            has_child: false,
+            childs: [],
+          },
+          {
+            node_name: "nodo setenta y ocho",
+            node_id: 78,
+            node_depth: 2,
+            has_child: true,
+            childs: [
+              {
+                node_name: "nodo ab",
+                node_id: 124,
+                node_depth: 3,
+                has_child: false,
+                childs: [],
+              },
+              {
+                node_name: "nodo jx",
+                node_id: 125,
+                node_depth: 3,
+                has_child: true,
+                childs: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        node_name: "nodo tres",
+        node_id: 3,
+        node_depth: 1,
+        has_child: true,
+        childs: [
+          {
+            node_name: "nodo sesenta y siete",
+            node_id: 67,
+            node_depth: 2,
+            has_child: false,
+            childs: [],
+          },
+        ],
+      },
+      {
+        node_name: "nodo YU",
+        node_id: 201,
+        node_depth: 1,
+        has_child: false,
+        childs: [],
+      },
+    ],
+    schema_version: "1.0",
+  };
+
+  res.status(200).json(graphData);
+}
